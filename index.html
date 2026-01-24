@@ -3,33 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Navin Kishore | Data & Analytics</title>
+  <title>Navin Kishore Ravi Kumar | Analytics Portfolio</title>
+  <meta name="description" content="Analytics portfolio: SQL, Python, Power BI, experimentation, marketing/product analytics, data engineering." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body style="font-family: system-ui; max-width: 900px; margin: auto; padding: 40px;">
 
-  <h1>Navin Kishore Ravi Kumar</h1>
-  <p>Data Analyst • Marketing Analytics • BI • Python • SQL • Power BI</p>
+<body>
+  <header class="wrap header">
+    <div class="top">
+      <div>
+        <h1 class="name">Navin Kishore Ravi Kumar</h1>
+        <p class="headline">
+          Analytics • Marketing / Product Analytics • BI • Experimentation • SQL • Python • Power BI
+        </p>
+        <p class="subhead">
+          I build decision-ready metrics, dashboards, and experiments—turning messy data into clear business actions.
+        </p>
 
-  <hr />
+        <div class="cta-row">
+          <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">View Resume (PDF)</a>
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
 
-  <h2>About</h2>
-  <p>
-    Data professional with 8+ years of experience across marketing analytics,
-    BI reporting, experimentation, and data engineering.
-  </p>
+        <div class="links">
+          <a href="https://github.com/navinkishorer" target="_blank" rel="noopener">GitHub</a>
+          <span class="dot">•</span>
+          <a href="https://www.linkedin.com/in/YOUR_LINKEDIN/" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="dot">•</span>
+          <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>
+          <span class="dot">•</span>
+          <span class="pill">Open to: Data Analyst • BI Analyst • Marketing Analytics • Product Analyst</span>
+        </div>
+      </div>
 
-  <h2>Projects</h2>
-  <ul>
-    <li><strong>Data Center Expansion Optimization</strong> – ML clustering + NSGA-II</li>
-    <li><strong>Marketing ROI Pipeline</strong> – SQL + Python + Power BI</li>
-    <li><strong>Experiment Monitoring Platform</strong> – A/B testing & metrics</li>
-  </ul>
+      <div class="card quick">
+        <h2>Quick Snapshot</h2>
+        <ul class="bullets">
+          <li><strong>8+ years</strong> analytics + marketing ops + data engineering</li>
+          <li><strong>Dashboards:</strong> KPI scorecards, funnel metrics, stakeholder reporting</li>
+          <li><strong>Core tools:</strong> SQL, Python, Power BI/Tableau, Snowflake/Postgres</li>
+          <li><strong>Strengths:</strong> experimentation, metrics design, automation, storytelling</li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-  <h2>Contact</h2>
-  <p>
-    GitHub: <a href="https://github.com/navinkishorer">github.com/navinkishorer</a><br/>
-    LinkedIn: <a href="https://linkedin.com/in/YOUR_LINK">LinkedIn</a>
-  </p>
+  <main class="wrap">
+    <section class="section" id="about">
+      <h2>About</h2>
+      <div class="card">
+        <p>
+          I’m an analytics professional with experience across marketing analytics, BI reporting, and data pipelines.
+          I’ve supported growth teams and business stakeholders by building reliable metrics, dashboards, and experimentation
+          workflows—so teams can measure impact, reduce ambiguity, and move faster.
+        </p>
 
+        <div class="grid-3">
+          <div class="mini">
+            <h3>What I do</h3>
+            <p>Metrics design, funnel analysis, dashboards, experiment measurement, automation.</p>
+          </div>
+          <div class="mini">
+            <h3>What I use</h3>
+            <p>SQL, Python, Power BI/Tableau, dbt, Snowflake/Postgres, Databricks (as needed).</p>
+          </div>
+          <div class="mini">
+            <h3>What I deliver</h3>
+            <p>Decision-ready insights, clear KPIs, scalable reporting, and measurable outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p class="muted">Recruiter-friendly writeups: problem → approach → impact → stack.</p>
+      </div>
+
+      <!-- PROJECT 1 -->
+      <article class="project card">
+        <div class="project-top">
+          <h3>Data Center Expansion Optimizer (India) — Clustering + Gravity Model + NSGA-II</h3>
+          <div class="badges">
+            <span class="badge">Optimization</span>
+            <span class="badge">ML Clustering</span>
+            <span class="badge">Multi-objective</span>
+          </div>
+        </div>
+
+        <p class="project-line">
+          Built a multi-objective site selection engine to rank candidate cities using infrastructure signals and tradeoffs.
+        </p>
+
+        <ul class="bullets">
+          <li>Modeled eligibility constraints + objective scoring (PUE ↓, IXP count ↑, service score ↑, facility age ↓) and extracted Pareto-optimal solutions.</li>
+          <li>Produced a ranked shortlist by combining Pareto-front outputs with weighted scoring to support decision-making.</li>
+          <li>Packaged the workflow into a reproducible pipeline (data prep → clustering → gravity scoring → NSGA-II → final ranking).</li>
+        </ul>
+
+        <div class="stack">
+          <span class="label">Stack:</span>
+          <span>Python, DEAP (NSGA-II), Pandas, NumPy, Scikit-learn, Visualization</span>
+        </div>
+
+        <div class="project-links">
+          <a class="link" href="https://github.com/navinkishorer" target="_blank" rel="noopener">GitHub Repo</a>
+          <span class="dot">•</span>
+          <a class="link" href="#" target="_blank" rel="noopener">Slides / Case Study</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 2 -->
+      <article class="project card">
+        <div class="project-top">
+          <h3>Experiment & KPI Monitoring — Automated Reporting + Power BI Scorecards</h3>
+          <div class="badges">
+            <span class="badge">Experimentation</span>
+            <span class="badge">BI</span>
+            <span class="badge">Automation</span>
+          </div>
+        </div>
+
+        <p class="project-line">
+          Designed an experiment monitoring pattern that standardizes metrics, reduces manual reporting, and speeds up decision cycles.
+        </p>
+
+        <ul class="bullets">
+          <li>Defined success metrics + guardrails (conversion rate, revenue impact, churn/returns) and built scorecards for weekly reviews.</li>
+          <li>Automated refresh-ready datasets using SQL + Python transforms to reduce repetitive stakeholder asks.</li>
+          <li>Created a consistent “single source of truth” for experiment readouts: baseline, lift, confidence, and recommendation.</li>
+        </ul>
+
+        <div class="stack">
+          <span class="label">Stack:</span>
+          <span>SQL, Python, Power BI/Tableau, Statistics (A/B testing), Data Modeling</span>
+        </div>
+
+        <div class="project-links">
+          <a class="link" href="#" target="_blank" rel="noopener">Demo Dashboard</a>
+          <span class="dot">•</span>
+          <a class="link" href="#" target="_blank" rel="noopener">Write-up</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 3 -->
+      <article class="project card">
+        <div class="project-top">
+          <h3>Marketing ROI Pipeline — Campaign Performance + Channel Insights</h3>
+          <div class="badges">
+            <span class="badge">Marketing Analytics</span>
+            <span class="badge">Pipelines</span>
+            <span class="badge">Attribution</span>
+          </div>
+        </div>
+
+        <p class="project-line">
+          Built a campaign analytics workflow to connect spend → leads → revenue outcomes and enable faster budget decisions.
+        </p>
+
+        <ul class="bullets">
+          <li>Integrated campaign + conversion datasets into a clean reporting layer with standardized KPIs (CAC, ROAS, CVR, LTV proxy).</li>
+          <li>Developed views for funnel drop-off and cohort performance to highlight what’s working and where to iterate.</li>
+          <li>Enabled self-serve reporting for stakeholders with a dashboard-first design and documented metric definitions.</li>
+        </ul>
+
+        <div class="stack">
+          <span class="label">Stack:</span>
+          <span>SQL, Python, Postgres/Snowflake, dbt (optional), Power BI/Tableau</span>
+        </div>
+
+        <div class="project-links">
+          <a class="link" href="#" target="_blank" rel="noopener">GitHub Repo</a>
+          <span class="dot">•</span>
+          <a class="link" href="#" target="_blank" rel="noopener">Dashboard</a>
+        </div>
+      </article>
+
+      <div class="note">
+        Tip: Replace the “#” links with your actual repo/dashboard links. Upload <code>resume.pdf</code> to enable the Resume button.
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <h2>Experience Highlights</h2>
+      <div class="card">
+        <ul class="bullets">
+          <li>Built KPI dashboards and automated reporting workflows to support weekly business reviews and leadership updates.</li>
+          <li>Delivered analytics for funnels, cohorts, segmentation, and experimentation measurement across cross-functional teams.</li>
+          <li>Implemented SQL/Python data prep patterns to improve reliability, repeatability, and speed of analysis.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="card contact">
+        <div>
+          <p class="muted">Best way to reach me:</p>
+          <p class="contact-big">
+            <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>
+          </p>
+          <p class="muted">Also:</p>
+          <p>
+            <a href="https://www.linkedin.com/in/YOUR_LINKEDIN/" target="_blank" rel="noopener">LinkedIn</a>
+            <span class="dot">•</span>
+            <a href="https://github.com/navinkishorer" target="_blank" rel="noopener">GitHub</a>
+          </p>
+        </div>
+
+        <div class="card mini">
+          <h3>What I’m looking for</h3>
+          <p>Analytics roles focused on SQL + BI + experimentation, where insights directly drive product or growth decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© <span id="y"></span> Navin Kishore Ravi Kumar</span>
+      <span class="dot">•</span>
+      <a href="#about">Back to top</a>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
