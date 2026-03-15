@@ -1,234 +1,1290 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Navin Kishore Ravi Kumar | Analytics Portfolio</title>
-  <meta name="description" content="Analytics portfolio: SQL, Python, Power BI, experimentation, marketing/product analytics, data engineering." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navin Kishore Ravi Kumar — Analytics Portfolio</title>
+  <meta name="description" content="Analytics professional specializing in SQL, BI, experimentation, and marketing analytics. 8+ years experience." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:        #0b0b0e;
+      --surface:   #111116;
+      --border:    #1c1c24;
+      --text:      #eceaf4;
+      --muted:     #7b788f;
+      --accent:    #e8b84b;
+      --accent-dim:#7a5f1a;
+      --blue:      #6b9fff;
+      --red:       #ff6b6b;
+      --green:     #5fcc8a;
+
+      --f-display: 'Fraunces', Georgia, serif;
+      --f-body:    'Plus Jakarta Sans', sans-serif;
+      --f-mono:    'JetBrains Mono', monospace;
+
+      --radius:    8px;
+      --transition: 0.22s ease;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--f-body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+      background: rgba(11,11,14,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--f-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-family: var(--f-mono);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 600 !important;
+      color: #000;
+    }
+    .nav-cta:hover { background: #f5c957 !important; color: #000 !important; }
+
+    /* ─── MAIN LAYOUT ─── */
+    main { padding-top: 60px; }
+    section {
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 8vw, 10rem);
+      position: relative;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: calc(100vh - 60px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding-top: 5rem;
+      overflow: hidden;
+    }
+    .hero-inner { max-width: 760px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 0.3rem 1rem;
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.04em;
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .hero h1 {
+      font-family: var(--f-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
+    .tag {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      transition: all var(--transition);
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-ctas {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { background: #f5c957; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--muted);
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollDown 2s infinite;
+    }
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ─── SECTION LABELS ─── */
+    .section-label {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1; max-width: 60px;
+      height: 1px;
+      background: var(--accent-dim);
+    }
+    .section-title {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 2.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .about-text p strong { color: var(--text); }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .stat-card {
+      background: var(--surface);
+      padding: 1.5rem;
+      transition: background var(--transition);
+    }
+    .stat-card:hover { background: #161620; }
+    .stat-num {
+      font-family: var(--f-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-bg {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group { }
+    .skill-group-title {
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .skill-item {
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: color var(--transition);
+    }
+    .skill-item::before {
+      content: '▸';
+      color: var(--accent-dim);
+      font-size: 0.65rem;
+    }
+    .skill-item:hover { color: var(--text); }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(232,184,75,0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .project-card:hover { border-color: var(--accent-dim); transform: translateY(-3px); }
+    .project-card:hover::before { opacity: 1; }
+    .project-num {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      color: var(--accent-dim);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .project-title {
+      font-family: var(--f-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .ptag {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
+      background: rgba(232,184,75,0.08);
+      border: 1px solid var(--accent-dim);
+      border-radius: 3px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .project-bullets {
+      list-style: none;
+      margin-bottom: 1.25rem;
+    }
+    .project-bullets li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .project-bullets li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent-dim);
+      font-size: 0.75rem;
+    }
+    .project-stack {
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+    .project-stack span { color: var(--blue); }
+    .project-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .plink {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all var(--transition);
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .plink:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── EXPERIENCE ─── */
+    .experience-bg {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-period {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding-top: 0.2rem;
+      letter-spacing: 0.04em;
+    }
+    .exp-role {
+      font-family: var(--f-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .exp-company {
+      font-family: var(--f-mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 0.25rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--accent-dim);
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-links {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: all var(--transition);
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-email {
+      display: inline-block;
+      font-family: var(--f-mono);
+      font-size: 1rem;
+      color: var(--text);
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid var(--accent-dim);
+      transition: border-color var(--transition);
+    }
+    .contact-email:hover { border-color: var(--accent); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2rem clamp(1.5rem, 8vw, 10rem);
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ─── CHATBOT ─── */
+    .chat-fab {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      cursor: pointer;
+      z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 20px rgba(232,184,75,0.35);
+      transition: all var(--transition);
+    }
+    .chat-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(232,184,75,0.5); }
+    .chat-panel {
+      position: fixed;
+      bottom: 6rem; right: 2rem;
+      width: 360px;
+      max-height: 520px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: none;
+      flex-direction: column;
+      z-index: 200;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      animation: slideUp 0.25s ease;
+    }
+    .chat-panel.open { display: flex; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .chat-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .chat-header-left { display: flex; align-items: center; gap: 0.6rem; }
+    .chat-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #e87b4b);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #000;
+      font-family: var(--f-display);
+    }
+    .chat-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .chat-status {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      color: var(--green);
+    }
+    .chat-close {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 1.2rem; line-height: 1;
+      transition: color var(--transition);
+    }
+    .chat-close:hover { color: var(--text); }
+    .chat-api-row {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: 0.5rem; align-items: center;
+    }
+    .chat-api-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.35rem 0.6rem;
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      outline: none;
+    }
+    .chat-api-input:focus { border-color: var(--accent-dim); }
+    .chat-api-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .chat-msg {
+      max-width: 85%;
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.83rem;
+      line-height: 1.55;
+    }
+    .chat-msg.bot {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 3px;
+      align-self: flex-start;
+      color: var(--text);
+    }
+    .chat-msg.user {
+      background: var(--accent);
+      color: #000;
+      border-bottom-right-radius: 3px;
+      align-self: flex-end;
+      font-weight: 500;
+    }
+    .chat-typing {
+      display: flex; gap: 4px; align-items: center;
+      padding: 0.65rem 0.9rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px; border-bottom-left-radius: 3px;
+      align-self: flex-start;
+      width: fit-content;
+    }
+    .chat-typing span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: bounce 1.2s infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-5px); }
+    }
+    .chat-input-row {
+      padding: 0.75rem;
+      border-top: 1px solid var(--border);
+      display: flex; gap: 0.5rem;
+    }
+    .chat-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      color: var(--text);
+      font-family: var(--f-body);
+      font-size: 0.83rem;
+      outline: none;
+      resize: none;
+      max-height: 100px;
+    }
+    .chat-input:focus { border-color: var(--accent-dim); }
+    .chat-send {
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: #000;
+      font-size: 1rem;
+      transition: all var(--transition);
+      align-self: flex-end;
+    }
+    .chat-send:hover { background: #f5c957; }
+    .chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 clamp(1.5rem, 8vw, 10rem);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .exp-period { padding-top: 0; }
+      .chat-panel { width: calc(100vw - 2rem); right: 1rem; }
+      footer { justify-content: center; text-align: center; }
+    }
+
+    /* ─── TABLEAU SECTION ─── */
+    .tableau-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .tableau-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .tableau-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .tableau-thumb {
+      height: 150px;
+      background: linear-gradient(135deg, #0f1a30 0%, #0b2040 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tableau-info { padding: 1.25rem; }
+    .tableau-title {
+      font-family: var(--f-display);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .tableau-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .tableau-link {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--blue);
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      transition: gap var(--transition);
+    }
+    .tableau-link:hover { gap: 0.6rem; }
+
+    /* Accent line at top of hero */
+    .hero-accent-line {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+  </style>
 </head>
-
 <body>
-  <header class="wrap header">
-    <div class="top">
-      <div>
-        <h1 class="name">Navin Kishore Ravi Kumar</h1>
-        <p class="headline">
-          Analytics • Marketing / Product Analytics • BI • Experimentation • SQL • Python • Power BI
-        </p>
-        <p class="subhead">
-          I build decision-ready metrics, dashboards, and experiments—turning messy data into clear business actions.
-        </p>
 
-        <div class="cta-row">
-          <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">View Resume (PDF)</a>
-          <a class="btn" href="#projects">View Projects</a>
-          <a class="btn" href="#contact">Contact</a>
-        </div>
-
-        <div class="links">
-          <a href="https://github.com/navinkishorer" target="_blank" rel="noopener">GitHub</a>
-          <span class="dot">•</span>
-          <a href="https://www.linkedin.com/in/navinkishorer/" target="_blank" rel="noopener">LinkedIn</a>
-          <span class="dot">•</span>
-          <a href="mailto:navinkishoreravikumar@gmail.com">navinkishoreravikumar@gmail.com</a>
-          <span class="dot">•</span>
-          <span class="pill">Open to: Data Analyst • BI Analyst • Marketing Analytics • Product Analyst</span>
-        </div>
-      </div>
-
-      <div class="card quick">
-        <h2>Quick Snapshot</h2>
-        <ul class="bullets">
-          <li><strong>8+ years</strong> analytics + marketing ops + data engineering</li>
-          <li><strong>Dashboards:</strong> KPI scorecards, funnel metrics, stakeholder reporting</li>
-          <li><strong>Core tools:</strong> SQL, Python, Power BI/Tableau, Snowflake/Postgres</li>
-          <li><strong>Strengths:</strong> experimentation, metrics design, automation, storytelling</li>
-        </ul>
-      </div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">N<span>.</span>K</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#dashboards">Dashboards</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="nav-cta">Hire Me</a>
     </div>
-  </header>
+  </nav>
 
-  <main class="wrap">
-    <section class="section" id="about">
-      <h2>About</h2>
-      <div class="card">
-        <p>
-          I’m an analytics professional with experience across marketing analytics, BI reporting, and data pipelines.
-          I’ve supported growth teams and business stakeholders by building reliable metrics, dashboards, and experimentation
-          workflows—so teams can measure impact, reduce ambiguity, and move faster.
+  <main>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="home">
+      <div class="hero-accent-line"></div>
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Open to new roles — Data · BI · Marketing Analytics
+        </div>
+        <h1>Navin Kishore<br><em>Ravi Kumar</em></h1>
+        <p class="hero-sub">
+          8+ years turning messy data into decisions. SQL, Python, Power BI, Tableau, Snowflake.
+          I build the metrics your team actually uses.
         </p>
+        <div class="hero-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Snowflake</span>
+          <span class="tag">A/B Testing</span>
+          <span class="tag">dbt</span>
+          <span class="tag">Databricks</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="resume.pdf" class="btn btn-primary" target="_blank">↓ Resume (PDF)</a>
+          <a href="#projects" class="btn btn-outline">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Contact</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        Scroll
+      </div>
+    </section>
 
-        <div class="grid-3">
-          <div class="mini">
-            <h3>What I do</h3>
-            <p>Metrics design, funnel analysis, dashboards, experiment measurement, automation.</p>
+    <!-- ─── ABOUT ─── -->
+    <section id="about">
+      <div class="section-label">01 — About</div>
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <h2 class="section-title">Analytics that<br>drives <em>decisions</em></h2>
+          <p>I'm an analytics professional with experience across <strong>marketing analytics, BI reporting, and data pipelines</strong>. I've supported growth teams and business stakeholders by building reliable metrics, dashboards, and experimentation workflows.</p>
+          <p>I focus on three things: <strong>measuring impact clearly</strong>, reducing ambiguity in data, and helping teams move faster. Clean pipelines and clear KPIs — not just dashboards that get ignored.</p>
+          <p>I build what gets used. If it doesn't drive a decision, it's not worth shipping.</p>
+          <br />
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+            <div>
+              <div class="skill-group-title">What I do</div>
+              <div class="skill-item">Metrics design</div>
+              <div class="skill-item">Funnel analysis</div>
+              <div class="skill-item">A/B experiment measurement</div>
+              <div class="skill-item">Dashboard & BI reporting</div>
+              <div class="skill-item">Pipeline automation</div>
+            </div>
+            <div>
+              <div class="skill-group-title">Looking for</div>
+              <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;">Analytics roles focused on SQL + BI + experimentation, where insights directly drive product or growth decisions.</p>
+            </div>
           </div>
-          <div class="mini">
-            <h3>What I use</h3>
-            <p>SQL, Python, Power BI/Tableau, dbt, Snowflake/Postgres, Databricks (as needed).</p>
+        </div>
+        <div class="about-stats fade-in">
+          <div class="stat-card">
+            <div class="stat-num">8+</div>
+            <div class="stat-label">Years in analytics & marketing ops</div>
           </div>
-          <div class="mini">
-            <h3>What I deliver</h3>
-            <p>Decision-ready insights, clear KPIs, scalable reporting, and measurable outcomes.</p>
+          <div class="stat-card">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Dashboards shipped</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">SQL</div>
+            <div class="stat-label">Primary language for data</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">0</div>
+            <div class="stat-label">Vanity metrics tolerated</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <div class="section-head">
-        <h2>Projects</h2>
-        <p class="muted">Recruiter-friendly writeups: problem → approach → impact → stack.</p>
-      </div>
+    <div class="divider"></div>
 
-      <!-- PROJECT 1 -->
-      <article class="project card">
-        <div class="project-top">
-          <h3>Data Center Expansion Optimizer (India) — Clustering + Gravity Model + NSGA-II</h3>
-          <div class="badges">
-            <span class="badge">Optimization</span>
-            <span class="badge">ML Clustering</span>
-            <span class="badge">Multi-objective</span>
+    <!-- ─── SKILLS ─── -->
+    <section class="skills-bg" id="skills">
+      <div class="section-label">02 — Toolkit</div>
+      <h2 class="section-title fade-in">Tools &amp; <em>Stack</em></h2>
+      <div class="skills-grid fade-in">
+        <div class="skill-group">
+          <div class="skill-group-title">Query & Transform</div>
+          <div class="skill-list">
+            <div class="skill-item">SQL (Postgres, Snowflake)</div>
+            <div class="skill-item">Python (Pandas, NumPy)</div>
+            <div class="skill-item">dbt</div>
+            <div class="skill-item">Databricks</div>
           </div>
         </div>
-
-        <p class="project-line">
-          Built a multi-objective site selection engine to rank candidate cities using infrastructure signals and tradeoffs.
-        </p>
-
-        <ul class="bullets">
-          <li>Modeled eligibility constraints + objective scoring (PUE ↓, IXP count ↑, service score ↑, facility age ↓) and extracted Pareto-optimal solutions.</li>
-          <li>Produced a ranked shortlist by combining Pareto-front outputs with weighted scoring to support decision-making.</li>
-          <li>Packaged the workflow into a reproducible pipeline (data prep → clustering → gravity scoring → NSGA-II → final ranking).</li>
-        </ul>
-
-        <div class="stack">
-          <span class="label">Stack:</span>
-          <span>Python, DEAP (NSGA-II), Pandas, NumPy, Scikit-learn, Visualization</span>
-        </div>
-
-        <div class="project-links">
-          <a class="link" href="https://github.com/navinkishorer" target="_blank" rel="noopener">GitHub Repo</a>
-          <span class="dot">•</span>
-          <a class="link" href="#" target="_blank" rel="noopener">Slides / Case Study</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 2 -->
-      <article class="project card">
-        <div class="project-top">
-          <h3>Experiment & KPI Monitoring — Automated Reporting + Power BI Scorecards</h3>
-          <div class="badges">
-            <span class="badge">Experimentation</span>
-            <span class="badge">BI</span>
-            <span class="badge">Automation</span>
+        <div class="skill-group">
+          <div class="skill-group-title">Visualization & BI</div>
+          <div class="skill-list">
+            <div class="skill-item">Power BI</div>
+            <div class="skill-item">Tableau</div>
+            <div class="skill-item">Matplotlib / Seaborn</div>
+            <div class="skill-item">Plotly</div>
           </div>
         </div>
-
-        <p class="project-line">
-          Designed an experiment monitoring pattern that standardizes metrics, reduces manual reporting, and speeds up decision cycles.
-        </p>
-
-        <ul class="bullets">
-          <li>Defined success metrics + guardrails (conversion rate, revenue impact, churn/returns) and built scorecards for weekly reviews.</li>
-          <li>Automated refresh-ready datasets using SQL + Python transforms to reduce repetitive stakeholder asks.</li>
-          <li>Created a consistent “single source of truth” for experiment readouts: baseline, lift, confidence, and recommendation.</li>
-        </ul>
-
-        <div class="stack">
-          <span class="label">Stack:</span>
-          <span>SQL, Python, Power BI/Tableau, Statistics (A/B testing), Data Modeling</span>
-        </div>
-
-        <div class="project-links">
-          <a class="link" href="#" target="_blank" rel="noopener">Demo Dashboard</a>
-          <span class="dot">•</span>
-          <a class="link" href="#" target="_blank" rel="noopener">Write-up</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 3 -->
-      <article class="project card">
-        <div class="project-top">
-          <h3>Marketing ROI Pipeline — Campaign Performance + Channel Insights</h3>
-          <div class="badges">
-            <span class="badge">Marketing Analytics</span>
-            <span class="badge">Pipelines</span>
-            <span class="badge">Attribution</span>
+        <div class="skill-group">
+          <div class="skill-group-title">Analytics Methods</div>
+          <div class="skill-list">
+            <div class="skill-item">A/B Testing & Experimentation</div>
+            <div class="skill-item">Cohort & Funnel Analysis</div>
+            <div class="skill-item">Marketing Attribution</div>
+            <div class="skill-item">KPI & Metrics Design</div>
           </div>
         </div>
-
-        <p class="project-line">
-          Built a campaign analytics workflow to connect spend → leads → revenue outcomes and enable faster budget decisions.
-        </p>
-
-        <ul class="bullets">
-          <li>Integrated campaign + conversion datasets into a clean reporting layer with standardized KPIs (CAC, ROAS, CVR, LTV proxy).</li>
-          <li>Developed views for funnel drop-off and cohort performance to highlight what’s working and where to iterate.</li>
-          <li>Enabled self-serve reporting for stakeholders with a dashboard-first design and documented metric definitions.</li>
-        </ul>
-
-        <div class="stack">
-          <span class="label">Stack:</span>
-          <span>SQL, Python, Postgres/Snowflake, dbt (optional), Power BI/Tableau</span>
+        <div class="skill-group">
+          <div class="skill-group-title">ML & Optimization</div>
+          <div class="skill-list">
+            <div class="skill-item">Scikit-learn</div>
+            <div class="skill-item">Clustering (K-Means, DBSCAN)</div>
+            <div class="skill-item">Multi-objective optimization</div>
+            <div class="skill-item">NSGA-II (DEAP)</div>
+          </div>
         </div>
-
-        <div class="project-links">
-          <a class="link" href="#" target="_blank" rel="noopener">GitHub Repo</a>
-          <span class="dot">•</span>
-          <a class="link" href="#" target="_blank" rel="noopener">Dashboard</a>
+        <div class="skill-group">
+          <div class="skill-group-title">Infrastructure & Tools</div>
+          <div class="skill-list">
+            <div class="skill-item">Git & GitHub</div>
+            <div class="skill-item">Jupyter Notebooks</div>
+            <div class="skill-item">Excel & Google Sheets</div>
+            <div class="skill-item">Jira / Confluence</div>
+          </div>
         </div>
-      </article>
-
-      <div class="note">
-        Tip: Replace the “#” links with your actual repo/dashboard links. Upload <code>resume.pdf</code> to enable the Resume button.
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <h2>Experience Highlights</h2>
-      <div class="card">
-        <ul class="bullets">
-          <li>Built KPI dashboards and automated reporting workflows to support weekly business reviews and leadership updates.</li>
-          <li>Delivered analytics for funnels, cohorts, segmentation, and experimentation measurement across cross-functional teams.</li>
-          <li>Implemented SQL/Python data prep patterns to improve reliability, repeatability, and speed of analysis.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <h2>Contact</h2>
-      <div class="card contact">
-        <div>
-          <p class="muted">Best way to reach me:</p>
-          <p class="contact-big">
-            <a href="mailto:navinkishoreravikumar@gmail.com">navinkishoreravikumar@gmail.com</a>
-          </p>
-          <p class="muted">Also:</p>
-          <p>
-            <a href="https://www.linkedin.com/in/navinkishorer/" target="_blank" rel="noopener">LinkedIn</a>
-            <span class="dot">•</span>
-            <a href="https://github.com/navinkishorer" target="_blank" rel="noopener">GitHub</a>
-          </p>
-        </div>
-
-        <div class="card mini">
-          <h3>What I’m looking for</h3>
-          <p>Analytics roles focused on SQL + BI + experimentation, where insights directly drive product or growth decisions.</p>
+        <div class="skill-group">
+          <div class="skill-group-title">Domain Knowledge</div>
+          <div class="skill-list">
+            <div class="skill-item">Marketing Analytics</div>
+            <div class="skill-item">Product Analytics</div>
+            <div class="skill-item">Revenue & Growth Analytics</div>
+            <div class="skill-item">Stakeholder Reporting</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <footer class="footer">
-      <span>© <span id="y"></span> Navin Kishore Ravi Kumar</span>
-      <span class="dot">•</span>
-      <a href="#about">Back to top</a>
-    </footer>
+    <!-- ─── PROJECTS ─── -->
+    <section id="projects">
+      <div class="section-label">03 — Work</div>
+      <h2 class="section-title fade-in">Selected <em>Projects</em></h2>
+      <div class="projects-grid">
+
+        <div class="project-card fade-in">
+          <div class="project-num">// 01</div>
+          <div class="project-title">Data Center Expansion Optimizer (India)</div>
+          <div class="project-tags">
+            <span class="ptag">ML Clustering</span>
+            <span class="ptag">Multi-objective</span>
+            <span class="ptag">Optimization</span>
+          </div>
+          <p class="project-desc">Multi-objective site selection engine ranking candidate cities using infrastructure signals and tradeoffs.</p>
+          <ul class="project-bullets">
+            <li>Modeled eligibility constraints + objective scoring (PUE ↓, IXP count ↑, service score ↑, facility age ↓) and extracted Pareto-optimal solutions.</li>
+            <li>Combined Pareto-front outputs with weighted scoring to produce a ranked shortlist for decision-makers.</li>
+            <li>Packaged into a reproducible pipeline: data prep → clustering → gravity scoring → NSGA-II → ranking.</li>
+          </ul>
+          <div class="project-stack">Stack: <span>Python, DEAP (NSGA-II), Pandas, NumPy, Scikit-learn</span></div>
+          <div class="project-links">
+            <a href="https://github.com/navinkishorer" class="plink" target="_blank">↗ GitHub</a>
+            <a href="#" class="plink">↗ Case Study</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-num">// 02</div>
+          <div class="project-title">Experiment & KPI Monitoring — Automated Scorecards</div>
+          <div class="project-tags">
+            <span class="ptag">Experimentation</span>
+            <span class="ptag">BI</span>
+            <span class="ptag">Automation</span>
+          </div>
+          <p class="project-desc">Experiment monitoring pattern that standardizes metrics, cuts manual reporting, and speeds up decision cycles.</p>
+          <ul class="project-bullets">
+            <li>Defined success metrics + guardrails (conversion rate, revenue impact, churn/returns) and built scorecards for weekly reviews.</li>
+            <li>Automated refresh-ready datasets using SQL + Python transforms to reduce repetitive stakeholder asks.</li>
+            <li>Created a "single source of truth" for experiment readouts: baseline, lift, confidence, and recommendation.</li>
+          </ul>
+          <div class="project-stack">Stack: <span>SQL, Python, Power BI/Tableau, A/B Testing, Data Modeling</span></div>
+          <div class="project-links">
+            <a href="#" class="plink">↗ Demo Dashboard</a>
+            <a href="#" class="plink">↗ Write-up</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-num">// 03</div>
+          <div class="project-title">Marketing ROI Pipeline — Campaign Performance</div>
+          <div class="project-tags">
+            <span class="ptag">Marketing Analytics</span>
+            <span class="ptag">Attribution</span>
+            <span class="ptag">Pipelines</span>
+          </div>
+          <p class="project-desc">Campaign analytics workflow connecting spend → leads → revenue outcomes to enable faster budget decisions.</p>
+          <ul class="project-bullets">
+            <li>Integrated campaign + conversion datasets into a clean reporting layer with standardized KPIs: CAC, ROAS, CVR, LTV proxy.</li>
+            <li>Built funnel drop-off and cohort performance views to show what's working and where to iterate.</li>
+            <li>Enabled self-serve reporting with a dashboard-first design and documented metric definitions.</li>
+          </ul>
+          <div class="project-stack">Stack: <span>SQL, Python, Postgres/Snowflake, dbt, Power BI/Tableau</span></div>
+          <div class="project-links">
+            <a href="https://github.com/navinkishorer" class="plink" target="_blank">↗ GitHub</a>
+            <a href="#" class="plink">↗ Dashboard</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── TABLEAU / DASHBOARDS ─── -->
+    <section class="skills-bg" id="dashboards">
+      <div class="section-label">04 — Dashboards</div>
+      <h2 class="section-title fade-in">Tableau &amp; <em>BI Work</em></h2>
+      <p class="fade-in" style="color:var(--muted);max-width:560px;margin-bottom:2.5rem;font-size:0.9rem;">Live dashboards and BI builds. Replace the placeholder links below with your actual Tableau Public, Power BI, or demo URLs.</p>
+      <div class="tableau-grid">
+        <div class="tableau-card fade-in">
+          <div class="tableau-thumb">📊</div>
+          <div class="tableau-info">
+            <div class="tableau-title">Experiment KPI Scorecard</div>
+            <div class="tableau-desc">Weekly A/B test readout dashboard. Baseline, lift, confidence interval, and recommendation in one view.</div>
+            <a href="#" class="tableau-link">View on Tableau Public ›</a>
+          </div>
+        </div>
+        <div class="tableau-card fade-in">
+          <div class="tableau-thumb">📈</div>
+          <div class="tableau-info">
+            <div class="tableau-title">Marketing Funnel Performance</div>
+            <div class="tableau-desc">Channel-level CAC, ROAS, and conversion rates. Cohort drop-off and spend efficiency by campaign.</div>
+            <a href="#" class="tableau-link">View on Tableau Public ›</a>
+          </div>
+        </div>
+        <div class="tableau-card fade-in">
+          <div class="tableau-thumb">🗺️</div>
+          <div class="tableau-info">
+            <div class="tableau-title">Data Center Site Ranking (India)</div>
+            <div class="tableau-desc">Geo visualization of Pareto-optimal city candidates ranked by infrastructure and operational scores.</div>
+            <a href="#" class="tableau-link">View on Tableau Public ›</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EXPERIENCE ─── -->
+    <section class="experience-bg" id="experience">
+      <div class="section-label">05 — Experience</div>
+      <h2 class="section-title fade-in">What I've <em>Built</em></h2>
+      <div class="exp-list">
+        <div class="exp-item fade-in">
+          <div class="exp-period">Recent</div>
+          <div>
+            <div class="exp-role">Analytics Professional</div>
+            <div class="exp-company">Multiple Organizations — Analytics, BI & Marketing Ops</div>
+            <ul class="exp-bullets">
+              <li>Built KPI dashboards and automated reporting workflows supporting weekly business reviews and leadership updates.</li>
+              <li>Delivered analytics for funnels, cohorts, segmentation, and experimentation across cross-functional teams.</li>
+              <li>Implemented SQL/Python data prep patterns to improve reliability, repeatability, and speed of analysis.</li>
+              <li>Designed metrics frameworks and documentation so stakeholders could self-serve without ambiguity.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item fade-in">
+          <div class="exp-period">Ongoing</div>
+          <div>
+            <div class="exp-role">Independent Projects</div>
+            <div class="exp-company">Data Center Optimization · Experiment Automation · Campaign Analytics</div>
+            <ul class="exp-bullets">
+              <li>Built a multi-objective optimization engine for infrastructure site selection using NSGA-II and clustering.</li>
+              <li>Designed standardized experiment reporting patterns used across marketing and product analytics contexts.</li>
+              <li>Developed a marketing ROI pipeline connecting spend to revenue outcomes with self-serve dashboard delivery.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section id="contact">
+      <div class="contact-inner fade-in">
+        <div class="section-label" style="justify-content:center;">06 — Contact</div>
+        <h2 class="section-title" style="text-align:center;">Let's <em>talk</em></h2>
+        <p style="color:var(--muted);font-size:0.9rem;">Open to Data Analyst, BI Analyst, Marketing Analytics, and Product Analyst roles. If your team cares about measurement, let's connect.</p>
+        <a href="mailto:navinkishoreravikumar@gmail.com" class="contact-email">navinkishoreravikumar@gmail.com</a>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/navinkishorer" class="contact-link" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/navinkishorer" class="contact-link" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="resume.pdf" class="contact-link" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Resume
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <span>© 2025 Navin Kishore Ravi Kumar</span>
+    <span style="color:var(--accent-dim);">Built for clarity. Optimized for humans.</span>
+    <a href="#home" style="color:var(--muted);transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">↑ Top</a>
+  </footer>
+
+  <!-- ─── CHATBOT FAB ─── -->
+  <button class="chat-fab" id="chatFab" title="Ask me about Navin">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+  </button>
+
+  <!-- ─── CHATBOT PANEL ─── -->
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-avatar">N</div>
+        <div>
+          <div class="chat-name">Ask about Navin</div>
+          <div class="chat-status">AI · Powered by Claude</div>
+        </div>
+      </div>
+      <button class="chat-close" id="chatClose">✕</button>
+    </div>
+    <div class="chat-api-row">
+      <input class="chat-api-input" id="apiKeyInput" type="password" placeholder="Paste Anthropic API key to enable chat" />
+      <button class="chat-api-btn" id="saveApiKey">Save</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">Hi! I'm an AI assistant that knows Navin's background. Ask me about his experience, projects, skills, or whether he's a good fit for your role.</div>
+    </div>
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chatInput" placeholder="Ask something…" rows="1"></textarea>
+      <button class="chat-send" id="chatSend">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    /* ─── INTERSECTION OBSERVER ─── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    /* ─── CHATBOT ─── */
+    const fab       = document.getElementById('chatFab');
+    const panel     = document.getElementById('chatPanel');
+    const closeBtn  = document.getElementById('chatClose');
+    const input     = document.getElementById('chatInput');
+    const sendBtn   = document.getElementById('chatSend');
+    const messages  = document.getElementById('chatMessages');
+    const apiInput  = document.getElementById('apiKeyInput');
+    const saveBtn   = document.getElementById('saveApiKey');
+
+    let apiKey = sessionStorage.getItem('nk_apikey') || '';
+    if (apiKey) apiInput.value = '••••••••••••••••';
+
+    saveBtn.addEventListener('click', () => {
+      const val = apiInput.value.trim();
+      if (val && !val.startsWith('•')) {
+        apiKey = val;
+        sessionStorage.setItem('nk_apikey', val);
+        apiInput.value = '••••••••••••••••';
+        addMsg('bot', 'API key saved! Ask me anything about Navin.');
+      }
+    });
+
+    fab.addEventListener('click', () => { panel.classList.toggle('open'); });
+    closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+    });
+    sendBtn.addEventListener('click', sendMsg);
+
+    function addMsg(role, text) {
+      const div = document.createElement('div');
+      div.className = `chat-msg ${role}`;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+      return div;
+    }
+
+    function addTyping() {
+      const div = document.createElement('div');
+      div.className = 'chat-typing';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      div.id = 'typing';
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('typing');
+      if (t) t.remove();
+    }
+
+    const SYSTEM = `You are a professional AI assistant embedded in Navin Kishore Ravi Kumar's portfolio website. Your job is to help recruiters and hiring managers learn about Navin.
+
+Key facts about Navin:
+- Name: Navin Kishore Ravi Kumar
+- 8+ years in analytics, marketing operations, and data engineering
+- Specializations: SQL, Python, Power BI, Tableau, Snowflake, Postgres, dbt, Databricks
+- Core strengths: experimentation/A/B testing, metrics design, funnel analysis, automation, stakeholder reporting
+- Open to: Data Analyst, BI Analyst, Marketing Analytics, Product Analyst roles
+- Contact: navinkishoreravikumar@gmail.com
+- GitHub: github.com/navinkishorer
+- LinkedIn: linkedin.com/in/navinkishorer
+
+Projects:
+1. Data Center Expansion Optimizer (India) — multi-objective site selection using NSGA-II, Pareto optimization, Python, Scikit-learn, DEAP
+2. Experiment & KPI Monitoring — standardized A/B test scorecards, automated SQL/Python pipelines, Power BI dashboards
+3. Marketing ROI Pipeline — spend-to-revenue attribution, CAC/ROAS/CVR tracking, self-serve dashboards, dbt + Snowflake
+
+Keep answers concise, professional, and recruiter-friendly. If asked about salary, say Navin prefers to discuss that directly. Don't fabricate details not listed above. Encourage the recruiter to email Navin or connect on LinkedIn for deeper conversations.`;
+
+    const history = [];
+
+    async function sendMsg() {
+      const text = input.value.trim();
+      if (!text) return;
+      if (!apiKey) {
+        addMsg('bot', 'Please save your Anthropic API key above to enable the chatbot.');
+        return;
+      }
+
+      addMsg('user', text);
+      input.value = '';
+      sendBtn.disabled = true;
+      addTyping();
+
+      history.push({ role: 'user', content: text });
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 600,
+            system: SYSTEM,
+            messages: history
+          })
+        });
+
+        const data = await res.json();
+        removeTyping();
+
+        if (data.error) {
+          addMsg('bot', `Error: ${data.error.message}`);
+        } else {
+          const reply = data.content?.[0]?.text || 'Sorry, I couldn\'t get a response.';
+          history.push({ role: 'assistant', content: reply });
+          addMsg('bot', reply);
+        }
+      } catch (err) {
+        removeTyping();
+        addMsg('bot', 'Network error. Check your API key and try again.');
+      }
+      sendBtn.disabled = false;
+    }
+
+    /* ─── AUTO-RESIZE TEXTAREA ─── */
+    input.addEventListener('input', () => {
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+    });
   </script>
+
 </body>
 </html>
