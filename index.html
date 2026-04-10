@@ -1420,10 +1420,40 @@
     @media (max-width: 900px) {
       .hero-wrap {
         grid-template-columns: 1fr;
+        padding-top: 4rem;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-l {
+        order: 2;
+        min-width: 0;
+        width: 100%;
+        padding: 0;
       }
 
       .hero-r {
-        display: none;
+        order: 1;
+        width: 180px;
+        margin: 0 auto;
+      }
+
+      .hero-h1 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-pills {
+        justify-content: center;
+      }
+
+      .hero-ctas {
+        justify-content: center;
       }
 
       .about-grid {
