@@ -11,11 +11,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
-  <link rel="icon" type="image/png" href="/favicon-96x96.png?v=20260410" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260410" />
-  <link rel="shortcut icon" href="/favicon.ico?v=20260410" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260410" />
-  <link rel="manifest" href="/site.webmanifest?v=20260410" />
+  <link rel="icon" type="image/png" href="/Assets/favicon-96x96.png?v=20260410" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/Assets/favicon.svg?v=20260410" />
+  <link rel="shortcut icon" href="/Assets/favicon.ico?v=20260410" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/Assets/apple-touch-icon.png?v=20260410" />
+  <link rel="manifest" href="/Assets/site.webmanifest?v=20260410" />
   <style>
     :root {
       --bg: #f5f2ec;
@@ -190,7 +190,7 @@
       padding: 0 var(--pad);
       min-height: calc(100vh - 56px);
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
       gap: 4rem;
       align-items: center;
     }
@@ -426,6 +426,16 @@
       to {
         transform: translateX(-50%);
       }
+    }
+
+    /* Hero right — portrait */
+    .hero-portrait {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      animation: fu .6s .35s ease both;
+      display: block;
     }
 
     /* Hero right — mosaic */
@@ -1648,31 +1658,7 @@
       </div>
 
       <div class="hero-r">
-        <div class="mosaic">
-          <div class="mt">
-            <div class="mn">8<em>+</em></div>
-            <div class="ml">Years analytics &amp; GTM</div>
-          </div>
-          <div class="mt dark">
-            <div class="mn">40<em>%</em></div>
-            <div class="ml">Faster decisions · Chartwells Power BI</div>
-          </div>
-          <div class="mt">
-            <div class="mn">35<em>%</em></div>
-            <div class="ml">Fewer ad-hoc requests · Tableau self-serve</div>
-          </div>
-          <div class="mt">
-            <div class="mn">20<em>%</em></div>
-            <div class="ml">Reduced time-to-value · Accel startup</div>
-          </div>
-        </div>
-        <div class="hero-loc">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-          San Francisco, CA · navinkishoreravikumar@gmail.com · +1 (650) 609-6597
-        </div>
+        <img src="./Assets/header-image.png" alt="Navin Kishore" class="hero-portrait" />
       </div>
     </div>
 
