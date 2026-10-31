@@ -19,7 +19,7 @@ const QUERY = `*[_id == "homePage"][0]{
     _key, title, category, tags, stack, links[]{label, url},
     "slug": slug.current,
     caseStudy{
-      dek, role, shareDescription,
+      headline, dek, role, shareDescription,
       outcomes[]{value, label},
       coverImage{alt, hotspot, "url": asset->url},
       body[]{..., _type == "image" => {alt, caption, hotspot, "url": asset->url}}
@@ -112,7 +112,8 @@ function analyticsSnippet() {
 function page(p, analytics) {
   const cs = p.caseStudy
   const url = `${SITE_URL}/projects/${p.slug}/`
-  const title = `${p.title} | Navin Kishore`
+  const heading = cs.headline || p.title
+  const title = `${heading} | Navin Kishore`
   const description = cs.shareDescription || cs.dek || ''
   const cover = imageUrl(cs.coverImage, 1200, 630)
   const ogImage = cover || FALLBACK_IMAGE
@@ -131,14 +132,14 @@ function page(p, analytics) {
   <link rel="canonical" href="${url}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Navin Kishore" />
-  <meta property="og:title" content="${esc(p.title)}" />
+  <meta property="og:title" content="${esc(heading)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${url}" />
   <meta property="og:image" content="${esc(ogImage)}" />
   ${cover ? '<meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />' : ''}
   ${cs.coverImage?.alt ? `<meta property="og:image:alt" content="${esc(cs.coverImage.alt)}" />` : ''}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${esc(p.title)}" />
+  <meta name="twitter:title" content="${esc(heading)}" />
   <meta name="twitter:description" content="${esc(description)}" />
   <meta name="twitter:image" content="${esc(ogImage)}" />
   <meta name="author" content="Navin Kishore Ravi Kumar" />
@@ -156,7 +157,7 @@ function page(p, analytics) {
   <main class="cs-main">
     <header class="cs-head">
       ${p.category ? `<div class="cs-eyebrow">${esc(p.category)}</div>` : ''}
-      <h1>${esc(p.title)}</h1>
+      <h1>${esc(heading)}</h1>
       ${cs.dek ? `<p class="cs-dek">${esc(cs.dek)}</p>` : ''}
       ${cs.role ? `<p class="cs-role"><span>Role</span> ${esc(cs.role)}</p>` : ''}
     </header>
