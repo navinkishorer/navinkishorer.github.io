@@ -11,7 +11,8 @@
     aboutBody,
     credentials[]{_key, title, detail, tag},
     experience[]{_key, company, role, period, location, companyBadge, bullets[]{_key, text, badge}},
-    projects[]{_key, title, category, tags, summary, highlights, stack, links[]{_key, label, url}},
+    projects[]{_key, title, category, tags, summary, highlights, stack, links[]{_key, label, url},
+      "caseSlug": select(count(caseStudy.body) > 0 => slug.current)},
     skillGroups[]{_key, heading, items},
     contactBlurb,
     pageTitle,
@@ -164,6 +165,8 @@
         .map((p, i) => {
           const num = String(i + 1).padStart(2, '0');
           const links = list(p.links).filter((l) => safeUrl(l.url));
+          const caseSlug = /^[a-z0-9-]+$/.test(p.caseSlug || '') ? p.caseSlug : null;
+          const caseLink = caseSlug ? `<a href="/projects/${caseSlug}/" class="plink">↗ Case study</a>` : '';
           return `<div class="pc reveal">
             <div class="pn">// ${num}${p.category ? ' · ' + esc(p.category) : ''}</div>
             <div class="pt">${esc(p.title)}</div>
@@ -171,7 +174,7 @@
             ${p.summary ? `<p class="pd">${esc(p.summary)}</p>` : ''}
             ${list(p.highlights).length ? `<ul class="pbul">${p.highlights.map((h) => `<li>${blockHtml(h)}</li>`).join('')}</ul>` : ''}
             ${list(p.stack).length ? `<div class="pstack"><strong>Stack:</strong> ${p.stack.map(esc).join(' · ')}</div>` : ''}
-            ${links.length ? `<div class="plinks">${links.map((l) => `<a href="${esc(safeUrl(l.url))}" class="plink" target="_blank" rel="noopener">↗ ${esc(l.label)}</a>`).join('')}</div>` : ''}
+            ${links.length || caseLink ? `<div class="plinks">${caseLink}${links.map((l) => `<a href="${esc(safeUrl(l.url))}" class="plink" target="_blank" rel="noopener">↗ ${esc(l.label)}</a>`).join('')}</div>` : ''}
           </div>`;
         })
         .join('')
