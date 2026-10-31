@@ -1,7 +1,7 @@
 // Builds the deployable site into _site/: a copy of the static files plus one
 // pre-rendered page per Sanity case study at /projects/<slug>/, so link previews
 // (LinkedIn, Slack) get each project's own title, description and image.
-import {cpSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
+import {cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync} from 'node:fs'
 import {dirname, join} from 'node:path'
 import {fileURLToPath} from 'node:url'
 
@@ -187,7 +187,10 @@ async function main() {
   const projects = result?.projects || []
 
   rmSync(OUT, {recursive: true, force: true})
-  cpSync(ROOT, OUT, {recursive: true, filter: (src) => !SKIP.has(src.slice(ROOT.length + 1).split('/')[0])})
+  mkdirSync(OUT, {recursive: true})
+  for (const entry of readdirSync(ROOT)) {
+    if (!SKIP.has(entry)) cpSync(join(ROOT, entry), join(OUT, entry), {recursive: true})
+  }
 
   const analytics = analyticsSnippet()
   for (const p of projects) {
