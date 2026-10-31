@@ -161,7 +161,6 @@ function page(p, analytics) {
       ${cs.role ? `<p class="cs-role"><span>Role</span> ${esc(cs.role)}</p>` : ''}
     </header>
     ${outcomes ? `<section class="cs-outs">${outcomes}</section>` : ''}
-    ${cover ? `<figure class="cs-cover"><img src="${esc(imageUrl(cs.coverImage, 1600, 840))}" alt="${esc(cs.coverImage.alt)}"></figure>` : ''}
     <article class="cs-body">
 ${bodyHtml(cs.body)}
     </article>
